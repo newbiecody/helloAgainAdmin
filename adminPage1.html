@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<link rel="stylesheet" href="style.css">
+	<style>@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@100&display=swap");</style>
+	<meta charset="utf-8">
+	<title>Admin view</title>
+</head>
+
+<!-- <body style="font-family: Poppins;"> -->
+    <div id="mainAdminPageContainer">
+        <div id="pendingShipOutContainer">
+            <!-- Awaiting payment confirmation -->
+            <h3 style="font-weight: bolder;">Payment made, confirmation required</h3>
+            <table style="table-layout:fixed" id="adminPage_pendingShipoutTable">
+                <thead>
+                    <tr>
+                        <th>Customer name</th>
+                        <th>Date of payment<br>(M_D_YYYY)</th>
+                        <th>Time of submission</th>
+                        <th>Delivery location</th>
+                        <th>Order details</th>
+                        <th>Permission for marketing</th>
+                        <th>Payment amount</th>
+                        <th>Phone number</th>
+                        <th>Returning customer</th>
+                        <th>Payment proof</th>
+                        <th>Proceed to ship</th>
+                    </tr>
+                </thead>
+            </table>
+        </div>
+
+
+        <div id="confirmShipOutContainer">
+            <!--  Shipping on the way-->
+            <h3 style="font-weight: bolder;">Shipping on the way</h3>
+            <table style="table-layout: fixed;" id="adminPage_sendForShippingTable">
+                <thead>
+                    <tr>
+                        <th>Customer name</th>
+                        <th>Order confirmed on:</th>
+                        <th>Delivery location</th>
+                        <th>Items</th>
+                        <th>Phone number</th>
+                        <th>Permission for marketing</th>
+                        <th>Shipment complete</th>
+                    </tr>
+                </thead>
+            </table>
+        </div>
+        <div id="pastOrdersContainers">
+            <!-- Goods settled -->
+            <h3 style="font-weight: bolder;">Past completed orders</h3>
+            <table style="table-layout: fixed;" id="adminPage_pastOrdersTable">
+                <thead>
+                    <tr>
+                        <th>Customer name</th>
+                        <th>Order completed on:</th>
+                        <th>Items</th>
+                        <th>Phone number</th>
+                        <th>Permission for marketing</th>
+                    </tr>
+                </thead>
+            </table>
+        </div>
+        <div id="pricesContainer">
+            <!-- Goods settled -->
+            <h3 style="font-weight: bolder;">Item type price</h3>
+            <table style="table-layout: fixed;" id="itemPrices">
+                <thead>
+                    <tr>
+                        <th>Classic series</th>
+                        <th>Timeless series</th>
+                        <th>Always</th>
+                    </tr>
+                </thead>
+            </table>
+            <br>
+            <h3>Edit prices</h3>
+            <form>
+                <label for="classicInput">Classic series</label><br>
+                <input type="text" id="classicInput">
+                <input type="button" id="changePrice_classic" value="Change Classic's price" class="priceChangeButton"><br><br>
+                <label for="timelessInput">Timeless series</label><br>
+                <input type="text" id="timelessInput">
+                <input type="button" id="changePrice_timeless" value="Change Timeless's price" class="priceChangeButton"><br><br>
+                <label for="alwaysInput">Always series</label><br>
+                <input type="text" id="alwaysInput"><br>
+                <input type="button" id="changePrice_always" value="Change Always's price" class="priceChangeButton"><br><br>
+            </form>
+        </div>
+    </div>
+	<!-- <script src="scripts.js"></script> -->
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+	<script src="https://kit.fontawesome.com/3811824cb5.js" crossorigin="anonymous"></script>
+	<script src="auth.js" type="module"></script>
+	</script>
+</body>
+
+</html>
