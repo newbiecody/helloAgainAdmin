@@ -111,6 +111,7 @@ if(adminPage1 != null){
                     const customerName = data[date][receiptuuid].customerName;
                     const customeruuid = data[date][receiptuuid].customeruuid;
                     const needBy = data[date][receiptuuid].need_by;
+                    const instagramHandle = data[date][receiptuuid].instagramHandle;
                     const dateOfPayment = data[date][receiptuuid].dateOfSubmission;
                     const timeOfPayment = data[date][receiptuuid].timeOfSubmission;
                     const deliveryLocation = data[date][receiptuuid].deliveryLocation;
@@ -121,7 +122,7 @@ if(adminPage1 != null){
                     const phoneNumber = data[date][receiptuuid].phoneNumber;
                     const returningCustomer = data[date][receiptuuid].returningCustomer;
                     
-                    const list_paymentDetails = [customerName, dateOfPayment, needBy, timeOfPayment
+                    const list_paymentDetails = [customerName, instagramHandle, dateOfPayment, needBy, timeOfPayment
                                                 ,deliveryLocation, itemDetails, marketingPermission
                                                 ,paidAmount, phoneNumber, returningCustomer]
 
