@@ -110,6 +110,7 @@ if(adminPage1 != null){
                     tableBody.appendChild(tableRow);
                     const customerName = data[date][receiptuuid].customerName;
                     const customeruuid = data[date][receiptuuid].customeruuid;
+                    const needBy = data[date][receiptuuid].need_by;
                     const dateOfPayment = data[date][receiptuuid].dateOfSubmission;
                     const timeOfPayment = data[date][receiptuuid].timeOfSubmission;
                     const deliveryLocation = data[date][receiptuuid].deliveryLocation;
@@ -120,7 +121,7 @@ if(adminPage1 != null){
                     const phoneNumber = data[date][receiptuuid].phoneNumber;
                     const returningCustomer = data[date][receiptuuid].returningCustomer;
                     
-                    const list_paymentDetails = [customerName, dateOfPayment, timeOfPayment
+                    const list_paymentDetails = [customerName, dateOfPayment, needBy, timeOfPayment
                                                 ,deliveryLocation, itemDetails, marketingPermission
                                                 ,paidAmount, phoneNumber, returningCustomer]
 
@@ -488,29 +489,43 @@ if(moreDetailsPage != null){
 
                     const storage = getStorage();
                     // console.log(customerUUID + "/" + itemuuid);
-                    getDownloadURL(sref(storage, customerUUID + "/" + itemuuid))
-                    .then((url) => {
-                        const downloadImageButton = document.createElement("a");
-                        downloadImageButton.setAttribute("href", url);
-                        downloadImageButton.setAttribute("download", "polaroidImg");
-                        downloadImageButton.innerHTML = "<button>Download image</button>";
-
-                        const downloadImageButtonTD = document.createElement("td");
-                        downloadImageButtonTD.appendChild(downloadImageButton);
-                        tableRow.appendChild(downloadImageButtonTD);
-                        tableBody.appendChild(tableRow);
-                        resolve();
-                    })
-                    .catch((error) => {
+                    try{
+                        getDownloadURL(sref(storage, customerUUID + "/" + itemuuid))
+                        .then((url) => {
+                            const downloadImageButton = document.createElement("a");
+                            downloadImageButton.setAttribute("href", url);
+                            downloadImageButton.setAttribute("download", "polaroidImg");
+                            downloadImageButton.innerHTML = "<button>Download image</button>";
+    
+                            const downloadImageButtonTD = document.createElement("td");
+                            downloadImageButtonTD.appendChild(downloadImageButton);
+                            tableRow.appendChild(downloadImageButtonTD);
+                            tableBody.appendChild(tableRow);
+                            resolve();
+                        })
+                        .catch((error) => {
+                            if (error.code === 'storage/object-not-found') {
+                                const downloadImageButtonTD = document.createElement("td");
+                                tableRow.appendChild(downloadImageButtonTD);
+                                tableBody.appendChild(tableRow);
+                                return Promise.resolve(false);
+                            } else {
+                            return Promise.reject(error);
+                            }
                         reject();
                         // Handle any errors
-                    });
+                        });
+                    }catch{
+                        const downloadImageButtonTD = document.createElement("td");
+                        tableRow.appendChild(downloadImageButtonTD);
+                        tableBody.appendChild(tableRow);
+                    }
+                    
 
                 });
             }
             async function proceduralFunct(){
                 await downloadImage();
-                
             }
             proceduralFunct();
         }
